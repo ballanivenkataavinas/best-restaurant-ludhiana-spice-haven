@@ -22,7 +22,6 @@ best-restaurant-ludhiana-punjab/
 ├── index.html                          # Main HTML file with all sections
 ├── sitemap.xml                         # XML sitemap for search engines
 ├── README.md                           # Project documentation
-├── SEO_Report_Spice_Haven.md         # SEO analysis and recommendations
 │
 └── images/                             # Menu item images
     ├── Biryani Ludhiana Special.png
