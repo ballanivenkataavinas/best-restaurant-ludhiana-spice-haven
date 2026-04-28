@@ -163,8 +163,3 @@ Google Analytics integration
 - JSON-LD - Structured data for SEO
 - Font Awesome - Icons
 - Vercel - Hosting & deployment
-
-
-## License
-
-This project is created for educational purposes as part of MKT907 coursework.
