@@ -112,6 +112,17 @@
             line-height: 1.6;
             color: var(--text-dark);
             background-color: #fff;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
         }
         
         /* ========== NAVIGATION ========== */
@@ -586,16 +597,30 @@
             color: var(--text-dark);
         }
         
-        .about-image {
+        .about-images {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .about-image-item {
             width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            height: 250px;
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1.2rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-image-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .about-image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         /* ========== MENU SECTION ========== */
@@ -1816,31 +1841,186 @@
             color: var(--text-light);
         }
         
+        /* ========== HAMBURGER MENU ========== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--gold-color);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 3px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
         /* ========== RESPONSIVE DESIGN ========== */
         @media (max-width: 768px) {
+            * {
+                box-sizing: border-box;
+            }
+            
+            html, body {
+                overflow-x: hidden;
+                max-width: 100vw;
+                width: 100%;
+                position: relative;
+            }
+            
+            /* Prevent all elements from causing overflow */
+            section, div, header, footer, nav {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            
+            nav {
+                padding: 0.8rem 0;
+                width: 100%;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+                position: relative;
+                width: 100%;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+                order: 2;
+            }
+            
             .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background-color: var(--dark-color);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+                gap: 0;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                display: block;
+                padding: 0.5rem;
+            }
+            
+            .cart-icon {
+                padding: 0.3rem;
+                order: 3;
+                flex-shrink: 0;
+            }
+            
+            .cart-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .container {
+                padding: 0 1rem;
+                max-width: 100%;
+            }
+            
+            section {
+                padding: 2rem 0;
+            }
+            
+            .hero {
+                height: 70vh;
+                background-attachment: scroll;
             }
             
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+                padding: 0 1rem;
             }
             
             .hero-content p {
-                font-size: 1rem;
+                font-size: 0.9rem;
+                padding: 0 1rem;
             }
             
             .about-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-text {
+                padding: 0;
+            }
+            
+            .about-images {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .about-image-item {
+                height: 200px;
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 0.9rem;
             }
             
             .cta-buttons {
                 flex-direction: column;
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .menu-item {
+                max-width: 100%;
             }
             
             .booking-layout {
@@ -1864,6 +2044,19 @@
             .action-btns {
                 flex-direction: column;
             }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-content {
+                width: 95%;
+                max-width: 95%;
+            }
         }
     </style>
 </head>
@@ -1873,7 +2066,12 @@
     <nav>
         <div class="nav-container">
             <a href="#home" class="logo">Spice Haven<sup style="font-size: 0.5em;">®</sup></a>
-            <ul class="nav-links">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#menu">Menu</a></li>
@@ -1883,17 +2081,15 @@
                 <li><a href="#testimonials">Reviews</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li>
-                    <div class="cart-icon" id="cartIcon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <path d="M16 10a4 4 0 0 1-8 0"></path>
-                        </svg>
-                        <span class="cart-count" id="cartCount">0</span>
-                    </div>
-                </li>
             </ul>
+            <div class="cart-icon" id="cartIcon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
         </div>
     </nav>
     
@@ -1922,11 +2118,19 @@
                     <p>Whether you're looking for a family restaurant Ludhiana for a special celebration or a dinner place Ludhiana for an intimate evening, Spice Haven offers an unforgettable culinary experience. Our dal makhani Punjab recipe has been perfected over generations, making us the go-to restaurant in Ferozepur Road Ludhiana.</p>
                     <p>As the best butter chicken restaurant in Ludhiana Punjab, we serve authentic Punjabi food restaurant Ferozepur Road style with modern amenities. Our family restaurant with parking Ludhiana facility ensures convenience, while our air conditioned restaurant Ludhiana provides comfort year-round. We're also a restaurant open late night Ludhiana, perfect for those special evening celebrations.</p>
                     <p>Looking for restaurant near me Ludhiana? We offer online food delivery Ludhiana service and cater to vegetarian restaurant Ludhiana needs with extensive plant-based options. Our birthday party restaurant Ludhiana packages and corporate dining Ludhiana services make us the perfect choice for any occasion.</p>
-                    <p><strong>Experience the best food in Ludhiana at our premium restaurant Ludhiana location. With Ludhiana restaurant online booking available 24/7, you can secure your table at the top restaurant Ludhiana for an unforgettable luxury dining Ludhiana experience. Discover why we're the famous restaurant Ludhiana that locals and tourists love!</strong></p>
-                    <p><strong>Book your table today and discover why we're the best restaurant in Ludhiana!</strong></p>
+                    <p>Experience the best food in Ludhiana at our premium restaurant Ludhiana location. With Ludhiana restaurant online booking available 24/7, you can secure your table at the top restaurant Ludhiana for an unforgettable luxury dining Ludhiana experience. Discover why we're the famous restaurant Ludhiana that locals and tourists love!</p>
+                    <p>Book your table today and discover why we're the best restaurant in Ludhiana!</p>
                 </div>
-                <div class="about-image" loading="lazy">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Fine dining Ludhiana restaurant interior" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                <div class="about-images">
+                    <div class="about-image-item">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Spice Haven restaurant interior - Fine dining Ludhiana" loading="lazy">
+                    </div>
+                    <div class="about-image-item">
+                        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80" alt="Spice Haven restaurant front entrance - Best restaurant in Ludhiana" loading="lazy">
+                    </div>
+                    <div class="about-image-item">
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80" alt="Spice Haven billing counter - Restaurant in Ludhiana Punjab" loading="lazy">
+                    </div>
                 </div>
             </div>
         </div>
@@ -2978,6 +3182,31 @@
     <!-- ========== JAVASCRIPT ========== -->
     <script>
         console.log('JavaScript is loading...');
+        
+        // ========== HAMBURGER MENU TOGGLE ==========
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
         
         // ========== CART FUNCTIONALITY ==========
         let cart = [];
