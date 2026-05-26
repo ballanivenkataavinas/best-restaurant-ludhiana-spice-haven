@@ -24,7 +24,7 @@ Allow: /
 User-agent: Slurp
 Allow: /
 
-# Block bad bots (optional)
+# Block bad bots
 User-agent: AhrefsBot
 Disallow: /
 
